@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Delete Planet?</h1>
+
+<h2>Are you sure you want to delete {{ planet.name }}?
+
+<form action="" method="post">
+    {% csrf_token %}
+    <a href="{% url 'planet-detail' planet.id %}">Cancel</a>
+    <button type='submit'>Yes-Delete</button>
+</form>
+
+{% endblock %}

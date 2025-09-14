@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Planets List</h1>
+
+{% for planet in planets %}
+    <a href="{% url 'planet-detail' planet.id %}">
+        <h2>{{ planet.name }}</h2>
+    </a>
+{% endfor %}
+
+{% endblock %}

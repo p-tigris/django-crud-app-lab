@@ -1,0 +1,14 @@
+{% extends "base.html" %} 
+{% block content %}
+    <h2>{{ planet.name }}</h2>
+    <h3>A {{ planet.planet_type }} planet, part of the {{ planet.system }} System</h3>
+    {% if planet.inhabited %}
+        <p>Planet contains life</p>
+    {% else %}
+        <p>Planet is uninhabited</p>
+    {% endif %}
+    <h4>{{ planet.description }}</h4>
+
+    <a href="{% url 'planet-update' planet.id %}">Edit</a>
+    <a href="{% url 'planet-delete' planet.id %}">Delete</a>
+{% endblock %}

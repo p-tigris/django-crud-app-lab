@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if planet %}
+    <h1>Edit {{ planet.name }}</h1>
+{% else %}
+    <h1>Add a Planet</h1>
+{% endif %}
+
+<form action='' method='post'>
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <button type='submit'>Submit</button>
+</form>
+
+{% endblock %}
