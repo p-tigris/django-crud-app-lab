@@ -11,4 +11,21 @@
 
     <a href="{% url 'planet-update' planet.id %}">Edit</a>
     <a href="{% url 'planet-delete' planet.id %}">Delete</a>
+
+    <form action="{% url 'add-mission' planet.id %}" method="post">
+        {% csrf_token %}
+        {{ mission_form.as_p }}
+        <button type="submit">Add Mission</button>
+    </form>
+    <div>
+        {% if planet.mission_set.all.count %}
+            {% for mission in planet.mission_set.all %}
+                <p>A {{ mission.get_type_display }} mission is scheduled for {{ mission.date }}.</p>
+                <a href="{% url 'update-mission' planet.id mission.id %}">Edit</a>
+                <a href="{% url 'delete-mission' planet.id mission.id %}">Delete</a>
+            {% endfor %}
+        {% else %}
+            <p>There are no scheduled missions.</p>
+        {% endif %}
+    </div>
 {% endblock %}

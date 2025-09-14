@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{ mission_form.as_p }}
+    <button type="submit">Update Mission</button>
+</form>
+
+{% endblock %}
