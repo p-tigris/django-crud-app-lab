@@ -19,9 +19,17 @@
       </div>
       <nav>
         <ul>
-          <li><a href="{% url 'planets-index' %}">All Planets</a></li>
-          <li><a href="{% url 'planet-create' %}">Add a Planet</a></li>
-          <li><a href="{% url 'about' %}">About</a></li>
+          {% if user.is_authenticated %}
+            <p>Hello, {{ user }}</p>
+            <li><a href="{% url 'planets-index' %}">All Planets</a></li>
+            <li><a href="{% url 'planet-create' %}">Add a Planet</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><form method="post" action="{% url 'logout' %}">{% csrf_token %}<button type='submit'>Logout</button></form></li>
+          {% else %}
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'home' %}">Login</a></li>
+            <li><a href="{% url 'signup' %}">Sign Up</a></li>
+          {% endif %}
         </ul>
       </nav>
     </header>
