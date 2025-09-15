@@ -1,13 +1,20 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% load static %} {% block head %}
+<link
+  rel="stylesheet"
+  href="{% static 'css/home.css' %}"
+/>
+{% endblock %}
 {% block content %}
-<h1>Home Page</h1>
+<div class="home-container">
+    <img src="https://i.imgur.com/ySkNPJl.jpeg" alt="Planethub Logo"/>
 
-{% if not user.is_authenticated %}
-    <form action="" method="post">
-        <h1>Login</h1>
-        {% csrf_token %} {{ form.as_p }}
-        <input type="hidden" name="next" value="{{ next }}" />
-        <button type="submit" class="btn submit">Login</button>
-    </form>
+    {% if not user.is_authenticated %}
+        <form action="" method="post" class="login-container">
+            <h1>Login</h1>
+            {% csrf_token %} {{ form.as_p }}
+            <input type="hidden" name="next" value="{{ next }}" />
+            <button type="submit" class="btn submit">Login</button>
+        </form>
+</div>
 {% endif %}
 {% endblock %}

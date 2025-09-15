@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,25 +8,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" type="image/png" href="" />
     <title>Planethub</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
     {% block head %} 
     {% endblock %}
   </head>
   <body>
     <header>
-      <div class="header-logo-container">
+      <div class="logo-container">
         <a href="/">
-          {% comment %} <img src="" alt="" /> {% endcomment %}
-          Home
+          <img src="https://i.imgur.com/ySkNPJl.jpeg" alt="Planethub Logo" height=100 width=100/>
         </a>
       </div>
       <nav>
-        <ul>
+        <ul class="nav-container">
           {% if user.is_authenticated %}
-            <p>Hello, {{ user }}</p>
+            <p id="user-greeting">Hello, {{ user }}</p>
             <li><a href="{% url 'planets-index' %}">All Planets</a></li>
             <li><a href="{% url 'planet-create' %}">Add a Planet</a></li>
             <li><a href="{% url 'about' %}">About</a></li>
-            <li><form method="post" action="{% url 'logout' %}">{% csrf_token %}<button type='submit'>Logout</button></form></li>
+            <li><form method="post" action="{% url 'logout' %}">{% csrf_token %}<button type='submit' id="logout-button">Logout</button></form></li>
           {% else %}
             <li><a href="{% url 'about' %}">About</a></li>
             <li><a href="{% url 'home' %}">Login</a></li>
